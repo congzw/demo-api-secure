@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NbSites.Web.Boots;
+using NbSites.Web.Demo.ClientCredentials;
 
 namespace NbSites.Web
 {
@@ -20,7 +21,11 @@ namespace NbSites.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            //services.AddBasicAuth();
+            services.AddBasicAuth2();
         }
 
         public void Configure(IApplicationBuilder app)
@@ -31,8 +36,15 @@ namespace NbSites.Web
             }
 
             app.UseMyStaticFiles(_env, _logger);
+
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
             
-            //do not forget to add[Area("Foo")] in controllers of area
+            app.UseAuthentication();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

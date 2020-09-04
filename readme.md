@@ -1,3 +1,35 @@
-# todo
+# demo for aspnet core api security
 
-## todo list
+## history
+
+- thick client app : windows authentication
+- server-side web app : windows or forms authentication
+- service-based app: WS-Security(WCF)
+
+
+- user/password security
+- token-based security
+
+
+## token security
+
+- token expireation
+- token sign and vaidate
+- token format
+- authen & author
+- diff app types
+- ...
+
+## Vocabulary
+
+- IDP: Identity Provider
+- IAM: Identity Access Management
+- OAuth2: an open protocol to allow secure authorization standard for: web, mobile, desktop apps.
+- OIDC: OpenId Connect: a simple identity layer on top of OAuth2 protocol
+
+
+
+## change list
+
+- 20200904 add basic auth demo
+- 20200904 init projects
