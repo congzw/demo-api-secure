@@ -2,30 +2,27 @@
 }
 
 <h2>@this.Path</h2>
-<hr />
-<h2>DEMO: Basic Auth</h2>
+<h2>Shared Api</h2>
 <ul>
     <li>
-        <a asp-controller="Users" asp-action="GetAll">Api/User/GetAll</a>
+        <a asp-controller="Foo" asp-action="GetAll">Api/User/GetAll</a>
     </li>
     <li>
-        <a asp-controller="Users" asp-action="GetAll2">Api/User/GetAll2</a>
-    </li>
-    <li>
-        <a asp-controller="Users" asp-action="Authenticate">Api/User/Authenticate</a>
+        <a asp-controller="Foo" asp-action="GetAll2">Api/User/GetAll2</a>
     </li>
 </ul>
 <hr />
-<h2>DEMO: Basic Auth2</h2>
+<h2>Basic Auth</h2>
 <ul>
     <li>
-        <a asp-controller="Client" asp-action="GetAll">Api/Client/GetAll</a>
+        <a asp-controller="BasicAuth" asp-action="Authenticate">Api/BasicAuth/Authenticate</a>
     </li>
+</ul>
+<hr />
+<h2>JWT</h2>
+<ul>
     <li>
-        <a asp-controller="Client" asp-action="GetAll2">Api/Client/GetAll2</a>
-    </li>
-    <li>
-        <a asp-controller="Client" asp-action="Authenticate">Api/Client/Authenticate</a>
+        <a asp-controller="JwtAuth" asp-action="Authenticate">Api/JwtAuth/Authenticate</a>
     </li>
 </ul>
 <hr />

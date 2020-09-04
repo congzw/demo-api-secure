@@ -31,5 +31,6 @@
 
 ## change list
 
+- 20200904 add jwt auth demo
 - 20200904 add basic auth demo
 - 20200904 init projects

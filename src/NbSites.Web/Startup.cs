@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NbSites.Web.Boots;
-using NbSites.Web.Demo.ClientCredentials;
+using NbSites.Web.Demo.Basic.Boots;
+using NbSites.Web.Demo.JWT.Boots;
+using NbSites.Web.Demo.Shared;
 
 namespace NbSites.Web
 {
@@ -12,11 +15,13 @@ namespace NbSites.Web
     {
         private readonly ILogger<Startup> _logger;
         private readonly IHostingEnvironment _env;
+        private readonly IConfiguration _configuration;
 
-        public Startup(ILogger<Startup> logger, IHostingEnvironment env)
+        public Startup(ILogger<Startup> logger, IHostingEnvironment env, IConfiguration configuration)
         {
             _logger = logger;
             _env = env;
+            _configuration = configuration;
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -24,8 +29,20 @@ namespace NbSites.Web
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            //services.AddBasicAuth();
-            services.AddBasicAuth2();
+            services.AddShared(_configuration);
+
+            var appSettingsSection = _configuration.GetSection("AppSettings");
+            var appSettings = appSettingsSection.Get<AppSettings>();
+            var scheme = appSettings.Scheme;
+            if (scheme == "Basic")
+            {
+                services.AddMyBasicAuth();
+            }
+            else
+            {
+                //Bearer
+                services.AddMyJWT(_configuration);
+            }
         }
 
         public void Configure(IApplicationBuilder app)

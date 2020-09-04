@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace NbSites.Web.Demo.ClientCredentials
+namespace NbSites.Web.Demo.Shared
 {
     public interface IFooService
     {
