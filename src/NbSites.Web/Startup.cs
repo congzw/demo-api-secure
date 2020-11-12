@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NbSites.Web.Boots;
 using NbSites.Web.Demo.Basic.Boots;
+using NbSites.Web.Demo.Cookies.Boots;
 using NbSites.Web.Demo.JWT.Boots;
 using NbSites.Web.Demo.Shared;
 
@@ -38,11 +39,15 @@ namespace NbSites.Web
             {
                 services.AddMyBasicAuth();
             }
-            else
+            else if (scheme == "Bearer")
             {
                 //Bearer
                 services.AddMyJWT(_configuration);
             }
+
+
+            //MyCookies
+            services.AddMyCookies();
         }
 
         public void Configure(IApplicationBuilder app)
@@ -59,7 +64,7 @@ namespace NbSites.Web
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .AllowCredentials());
-            
+
             app.UseAuthentication();
 
             app.UseMvc(routes =>
