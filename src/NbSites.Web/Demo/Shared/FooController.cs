@@ -17,6 +17,9 @@ namespace NbSites.Web.Demo.Shared
         [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
+            //use Postman Test With Headers:
+            //1 Authorization: Bearer {TheToken}
+            //2 Authorization: Basic {TheToken}
             return Ok(_fooService.GetAll());
         }
 

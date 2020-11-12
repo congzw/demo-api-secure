@@ -27,7 +27,13 @@
 - OAuth2: an open protocol to allow secure authorization standard for: web, mobile, desktop apps.
 - OIDC: OpenId Connect: a simple identity layer on top of OAuth2 protocol
 
+## how to use?
 
+- start project =>  ~/
+- Create Token With "Basic Auth" Or "JWT"
+- use Postman Test With Headers:
+	- 1 Authorization: Bearer {TheToken}
+	- 2 Authorization: Basic {TheToken}
 
 ## change list
 
