@@ -41,7 +41,7 @@ namespace NbSites.Web.Demo.Cookies.Controllers
                 new Claim("role", "Member")
             };
 
-            await HttpContext.SignInAsync(new ClaimsPrincipal(new ClaimsIdentity(claims, "Cookies", "user", "role")));
+            await HttpContext.SignInAsync(MyCookie.CookieScheme, new ClaimsPrincipal(new ClaimsIdentity(claims, "Cookies", "user", "role")));
             return Redirect("/");
         }
 
@@ -63,6 +63,18 @@ namespace NbSites.Web.Demo.Cookies.Controllers
             return View();
         }
 
+        [Authorize]
+        public IActionResult Foo()
+        {
+            return Content("[Authorize] for Foo");
+        }
+
+        [Authorize(AuthenticationSchemes = MyCookie.CookieScheme)]
+        public IActionResult Foo2()
+        {
+            return Content("[Authorize(AuthenticationSchemes = MyCookie.CookieScheme)] for Foo2");
+        }
+
         public IActionResult AccessDenied()
         {
             return View();
@@ -70,7 +82,7 @@ namespace NbSites.Web.Demo.Cookies.Controllers
         
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync();
+            await HttpContext.SignOutAsync(MyCookie.CookieScheme);
             return Redirect("/");
         }
     }

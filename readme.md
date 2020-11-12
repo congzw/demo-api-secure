@@ -37,6 +37,7 @@
 
 ## change list
 
+- 20201112 add more scheme challenge demo
 - 20201112 add cookies demo
 - 20201112 add default identity demo
 - 20200904 add jwt auth demo
